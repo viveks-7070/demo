@@ -35,7 +35,7 @@ gem 'rest-client', '~> 1.6.7'
 
 gem 'devise', '~> 4.2'
 
-gem 'pg', '~> 0.18.4'
+# gem 'pg', '~> 0.18.4'
 
 gem 'grape'
 
