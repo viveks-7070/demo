@@ -15,7 +15,8 @@ gem 'stripe', '~> 1.57', '>= 1.57.1'
 
 gem 'jwt'
 
-gem 'unicorn'
+# gem 'unicorn'
+gem 'puma'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
