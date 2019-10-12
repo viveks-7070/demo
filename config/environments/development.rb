@@ -19,6 +19,8 @@ Rails.application.configure do
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
 
+  config.cache_store = :redis_store, 'redis://localhost:6379/0/cache', {expires_in: 1.minutes}
+
   # Raise an error on page load if there are pending migrations.
   config.active_record.migration_error = :page_load
 

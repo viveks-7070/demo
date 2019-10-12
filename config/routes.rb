@@ -2,17 +2,22 @@ require 'sidekiq/web'
 Sidekiq::Web.app_url = '/'
 
 Rails.application.routes.draw do
+  use_doorkeeper
+  devise_for :admins
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
 
-  resources :users, :friends
+  resources :users, :friends, :charges
 
   mount Sidekiq::Web => '/sidekiq'
+  mount API => '/'
 
-  root 'users#index'
+  # root 'users#index'
+
+  root to: "users#index"
 
   get 'search', to: 'search#search'
 

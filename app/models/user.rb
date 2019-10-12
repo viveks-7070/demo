@@ -1,6 +1,14 @@
 # require 'elasticsearch/model'
 class User < ActiveRecord::Base
 	has_many :images, as: :imageable
+	has_one :profile
+	after_create :create_user_profile
+
+	def create_user_profile
+		p '1111111111111'
+		up = build_profile if profile.blank?
+		up.save!
+	end	
 # has_paper_trail
 
 # validates :avatar,

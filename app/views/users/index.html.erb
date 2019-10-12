@@ -18,4 +18,39 @@
 
 <%= link_to 'create', new_user_path %><br><br>
 
-<%= link_to 'Create Friend', friends_path %>
+
+<%= link_to 'Create Friend', friends_path %><br>
+
+<%= current_admin.inspect %>
+
+<%= link_to 'logout', destroy_admin_session_path(current_admin), method: :delete %>
+
+<br><br>
+
+<%= form_tag charges_path do %>
+  <article>
+    <% if flash[:error].present? %>
+      <div id="error_explanation">
+        <p><%= flash[:error] %></p>
+      </div>
+    <% end %>
+    <label class="amount">
+      <span>Amount: $10.00</span>
+      <%= text_field_tag :amount, 'value: 10', id: 'autocomplete' %>
+    </label>
+  </article>
+
+  <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+          data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+          data-description="A month's subscription"
+          data-amount=$('#autocomplete').val()
+          data-locale="auto">
+
+          // console.log('dfdfdf')
+
+          // alert('sdfsdf')
+
+          // alert($('#'autocomplete).val())
+          	
+  </script>
+<% end %>

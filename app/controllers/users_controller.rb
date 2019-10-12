@@ -1,9 +1,7 @@
 class UsersController < ApplicationController
 
 	def index
-		@users = User.all
-		  # User.create(name: 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', created_at: '2018-11-12 07:03:25', updated_at: '2018-11-12 07:03:25')
-
+		@users = Rails.cache.fetch("all_user") {User.all}
 	end	
 
 	def new
@@ -20,7 +18,8 @@ class UsersController < ApplicationController
 	end	
 
 	def show
-		@user = User.find_by(id: params[:id])
+		@user = Rails.cache.fetch("show_user") {User.find_by(id: params[:id])}
+		
 	end	
 
 	def destroy
